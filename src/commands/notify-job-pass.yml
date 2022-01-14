@@ -14,7 +14,7 @@ parameters:
 steps:
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - official-slack/notify:
-      event: fail
+      event: pass
       mentions: << parameters.mentions >>
       custom: |
         {
