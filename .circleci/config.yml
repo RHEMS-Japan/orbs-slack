@@ -32,7 +32,10 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      - slack/notify-job-pass
+      - slack/notify-job-pass:
+          mentions: "@shindex"
+          icon: ":kubernetes:"
+      - slack/notify-job-fail
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
