@@ -27,7 +27,7 @@ steps:
               "type": "header",
               "text": {
                 "type": "plain_text",
-                "text": "Job < ${CIRCLE_JOB} << parameters.icon >> > failed :interrobang:",
+                "text": "Job [ ${CIRCLE_JOB} << parameters.icon >> ] failed :interrobang:",
                 "emoji": true
               }
             },
