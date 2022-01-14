@@ -41,24 +41,24 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*Branch / Tag *\t\n${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
                     },
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Repo*\t\n${CIRCLE_PROJECT_REPONAME}"
+                        "text": "*Repo:*\t\n${CIRCLE_PROJECT_REPONAME}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Message*\t\n${GIT_COMMIT_MSG}"
+                        "text": "*Message:*\t\n${GIT_COMMIT_MSG}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Commit*\t\n${CIRCLE_SHA1:0:7}"
+                        "text": "*Commit:*\t\n${CIRCLE_SHA1:0:7}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Author*\t\n${CIRCLE_USERNAME}"
+                        "text": "*Author:*\t\n${CIRCLE_USERNAME}"
                       }
                     ],
                     "accessory": {

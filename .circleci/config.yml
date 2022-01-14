@@ -33,7 +33,7 @@ jobs:
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
       - slack/notify-job-pass
-      - slack/notify
+      # - slack/notify
       # - run: exit 1
       # - slack/notify-job-fail
 
