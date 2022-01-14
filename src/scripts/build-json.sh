@@ -54,10 +54,10 @@ EOS
 )
 
     if [ -n "${IMAGE_URL}" ]; then
-        _json=$(echo ${_json} | jq '.blocks[2] |= .+ {"accessory": '"$(echo ${_image_json})"'}')
+        _json=$(echo ${_json} | jq '.blocks[2] |= .+ {"accessory": '"${_image_json}"'}')
     fi
 
-    echo "export JSON=$(echo ${_json})"  >> $BASH_ENV
+    echo "export JSON=${_json}"  >> $BASH_ENV
 }
 
 # Will not run if sourced for bats-core tests.
