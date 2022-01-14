@@ -36,8 +36,8 @@ jobs:
       - slack/notify:
           title: "This is rocket! :rocket:"
           image-url: "https://gundamevolution.jp/favicon.ico"
-      - run: exit 1
-      - slack/notify-job-fail
+      # - run: exit 1
+      # - slack/notify-job-fail
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
