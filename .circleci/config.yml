@@ -34,6 +34,7 @@ jobs:
       # Push new changes first, before adding new tests to your config.
       - slack/notify-job-pass
       - slack/notify:
+          # title: "This is rocket! :rocket:"
           image-url: "https://gundamevolution.jp/favicon.ico"
       - run: exit 1
       - slack/notify-job-fail

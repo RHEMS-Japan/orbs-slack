@@ -11,6 +11,9 @@ parameters:
 
       If the username contains a space, the Slack ID must be used with angled
       brackets: "<@U8XXXXXXX>"
+  title:
+    type: string
+    description: ""
   image-url:
     type: string
     default: ''
@@ -30,7 +33,7 @@ steps:
                     "type": "header",
                     "text": {
                       "type": "plain_text",
-                      "text": "UPDATE AGONES DONE :rocket:",
+                      "text": "<< parameters.title >>",
                       "emoji": true
                     }
                   },
