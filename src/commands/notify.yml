@@ -22,7 +22,102 @@ steps:
       environment:
         IMAGE_URL: << parameters.image-url >>
       command: << include(scripts/build-json.sh) >>
-  - official-slack/notify:
-      event: always
-      mentions: << parameters.mentions >>
-      custom: ${JSON}
+  - when:
+      condition: << parameters.image-url >>
+      steps:
+        - official-slack/notify:
+            event: always
+            mentions: << parameters.mentions >>
+            custom: |
+              {
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "UPDATE AGONES DONE :rocket:",
+                      "emoji": true
+                    }
+                  },
+                  {
+                    "type": "divider"
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*Branch / Tag *\t\n${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                    },
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Repo*\t\n${CIRCLE_PROJECT_REPONAME}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Message*\t\n${GIT_COMMIT_MSG}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit*\t\n${CIRCLE_SHA1:0:7}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Author*\t\n${CIRCLE_USERNAME}"
+                      }
+                    ]
+                  }
+                ]
+              }
+  - unless:
+      condition: << parameters.image-url >>
+      steps:
+        - official-slack/notify:
+            event: always
+            mentions: << parameters.mentions >>
+            custom: |
+              {
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "UPDATE AGONES DONE :rocket:",
+                      "emoji": true
+                    }
+                  },
+                  {
+                    "type": "divider"
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*Branch / Tag *\t\n${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                    },
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Repo*\t\n${CIRCLE_PROJECT_REPONAME}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Message*\t\n${GIT_COMMIT_MSG}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit*\t\n${CIRCLE_SHA1:0:7}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Author*\t\n${CIRCLE_USERNAME}"
+                      }
+                    ],
+                    "accessory": {
+                      "type": "image",
+                      "image_url": "${IMAGE_URL}",
+                      "alt_text": "thumbnail"
+                    }
+                  }
+                ]
+              }

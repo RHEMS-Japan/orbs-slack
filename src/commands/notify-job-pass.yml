@@ -23,7 +23,7 @@ steps:
               "type": "header",
               "text": {
                 "type": "plain_text",
-                "text": "Job succeed :white_check_mark:",
+                "text": "Job succeed :tada:",
                 "emoji": true
               }
             },
