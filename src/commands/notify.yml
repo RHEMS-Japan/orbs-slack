@@ -60,7 +60,12 @@ steps:
                         "type": "mrkdwn",
                         "text": "*Author*\t\n${CIRCLE_USERNAME}"
                       }
-                    ]
+                    ],
+                    "accessory": {
+                      "type": "image",
+                      "image_url": "${IMAGE_URL}",
+                      "alt_text": "thumbnail"
+                    }
                   }
                 ]
               }
@@ -107,12 +112,7 @@ steps:
                         "type": "mrkdwn",
                         "text": "*Author*\t\n${CIRCLE_USERNAME}"
                       }
-                    ],
-                    "accessory": {
-                      "type": "image",
-                      "image_url": "${IMAGE_URL}",
-                      "alt_text": "thumbnail"
-                    }
+                    ]
                   }
                 ]
               }
