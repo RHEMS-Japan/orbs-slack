@@ -1,0 +1,28 @@
+description: >
+  This command echos "Hello World" using file inclusion.
+# What will this command do?
+# Descriptions should be short, simple, and clear.
+parameters:
+  mentions:
+    type: string
+    default: ''
+    description: >
+      Mention users via the @ symbol: "@USER"
+
+      If the username contains a space, the Slack ID must be used with angled
+      brackets: "<@U8XXXXXXX>"
+  image-url:
+    type: string
+    default: ''
+    description: ""
+steps:
+  - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
+  - run:
+      name: build params
+      environment:
+        IMAGE_URL: << parameters.image-url >>
+      command: << include(scripts/build-json.sh) >>
+  - official-slack/notify:
+      event: always
+      mentions: << parameters.mentions >>
+      custom: ${JSON}
