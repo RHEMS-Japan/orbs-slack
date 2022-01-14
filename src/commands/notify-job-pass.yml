@@ -1,0 +1,81 @@
+description: >
+  This command echos "Hello World" using file inclusion.
+# What will this command do?
+# Descriptions should be short, simple, and clear.
+parameters:
+  mentions:
+    type: string
+    default: ''
+    description: >
+      Mention users via the @ symbol: "@USER"
+
+      If the username contains a space, the Slack ID must be used with angled
+      brackets: "<@U8XXXXXXX>"
+  icon:
+    type: string
+    default: ''
+    description: ''
+steps:
+  - echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
+  - official-slack/notify:
+      event: pass
+      mentions: << parameters.mentions >>
+      custom: |
+        {
+          "blocks": [
+            {
+              "type": "header",
+              "text": {
+                "type": "plain_text",
+                "text": "job [ ${CIRCLE_JOB} << parameters.icon >> ] succeed :white_check_mark:",
+                "emoji": true
+              }
+            },
+            {
+              "type": "divider"
+            },
+            {
+              "type": "context",
+              "elements": [
+                {
+                  "type": "mrkdwn",
+                  "text": "*Branch / Tag *\t\n${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                }
+              ]
+            },
+            {
+              "type": "context",
+              "elements": [
+                {
+                  "type": "mrkdwn",
+                  "text": "*Repo*\t\n${CIRCLE_PROJECT_REPONAME}"
+                },
+                {
+                  "type": "mrkdwn",
+                  "text": "*Message*\t\n${GIT_COMMIT_MSG}"
+                },
+                {
+                  "type": "mrkdwn",
+                  "text": "*Commit*\t\n${CIRCLE_SHA1:0:7}"
+                },
+                {
+                  "type": "mrkdwn",
+                  "text": "*Author*\t\n${CIRCLE_USERNAME}"
+                }
+              ]
+            },
+            {
+              "type": "actions",
+              "elements": [
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "View Job"
+                  },
+                  "url": "${CIRCLE_BUILD_URL}"
+                }
+              ]
+            }
+          ]
+        }

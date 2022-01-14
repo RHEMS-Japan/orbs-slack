@@ -6,8 +6,13 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    slack: rhems-japan/slack@x.y.z
+  jobs:
+    your-job:
+      machine: true
+      steps:
+        - slack/notify
   workflows:
-    use-my-orb:
+    your-workflow:
       jobs:
-        - <orb-name>/<job-name>
+        - your-job
