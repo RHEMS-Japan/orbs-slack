@@ -27,7 +27,7 @@ steps:
               "type": "header",
               "text": {
                 "type": "plain_text",
-                "text": "job [ ${CIRCLE_JOB} << parameters.icon >> ] succeed :white_check_mark:",
+                "text": "job < ${CIRCLE_JOB} << parameters.icon >> > succeed :white_check_mark:",
                 "emoji": true
               }
             },
