@@ -4,5 +4,19 @@ description: >
   Workflow.
 docker:
   - image: 'cimg/base:stable'
+parameters:
+  mentions:
+    type: string
+    default: ''
+    description: >
+      Exports to the "$SLACK_PARAM_MENTIONS" environment variable for use in
+      templates.
+
+      Mention users via the @ symbol: "@USER"
+
+      If the username contains a space, the Slack ID must be used with angled
+      brackets: "<@U8XXXXXXX>"
 steps:
-  - official-slack/on-hold
+  - official-slack/notify:
+      mentions: <<parameters.mentions>>
+      template: basic_on_hold_1
