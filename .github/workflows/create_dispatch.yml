@@ -1,0 +1,29 @@
+name: Post to orbs-package
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Access Token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_FORGITHUBACTIONS_ID }}
+          private_key: ${{ secrets.APP_FORGITHUBACTIONS_KEY }}
+
+      - name: Set Env
+        run: echo "ACCESS_TOKEN=`echo ${{ steps.generate_token.outputs.token }}`" >> $GITHUB_ENV
+
+      - name: Create GitHub dispatch event
+        run: |
+          curl --request POST 'https://api.github.com/repos/RHEMS-Japan/orbs-package/dispatches' \
+          --header 'Authorization: Bearer ${{ env.ACCESS_TOKEN }}' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{
+            "event_type": "orbs-slack"
+          }'
