@@ -21,10 +21,11 @@ parameters:
     default: ''
     description: "Image to be attached to the notification message"
 steps:
+  - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - when:
       condition: << parameters.mentions >>
       steps:
-        - run: echo "export MENTIONS=<< parameters.mentions >>\n" >> $BASH_ENV
+        - run: echo "export MENTIONS=<< parameters.mentions >> " >> $BASH_ENV
   - when:
       condition: << parameters.image-url >>
       steps:
@@ -49,7 +50,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${MENTIONS}\*Branch / Tag:\*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
                     },
                     "fields": [
                       {
