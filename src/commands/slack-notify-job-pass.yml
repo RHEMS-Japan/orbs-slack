@@ -14,7 +14,7 @@ steps:
   - when:
       condition: << parameters.mentions >>
       steps:
-        - run: echo "export MENTIONS=<< parameters.mentions >>\n" >> $BASH_ENV
+        - run: echo "export MENTIONS=<< parameters.mentions >>" >> $BASH_ENV
   - official-slack/notify:
       event: pass
       mentions: << parameters.mentions >>
@@ -37,7 +37,7 @@ steps:
               "fields": [
                 {
                   "type": "mrkdwn",
-                  "text": "${MENTIONS}*Job name:*\t${CIRCLE_JOB}"
+                  "text": "${MENTIONS}\n*Job name:*\t${CIRCLE_JOB}"
                 }
               ],
               "accessory": {

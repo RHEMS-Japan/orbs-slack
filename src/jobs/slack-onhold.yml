@@ -116,7 +116,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${MENTIONS}*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}\n*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
                     },
                     "fields": [
                       {
