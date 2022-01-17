@@ -12,7 +12,8 @@ usage:
       machine: true
       steps:
         - slack/slack-notify:
-            title: SAMPLE TITLE
+            title: "CITY! :cityscape:"
+            image-url: "https://source.unsplash.com/400x300/?city"
   workflows:
     your-workflow:
       jobs:

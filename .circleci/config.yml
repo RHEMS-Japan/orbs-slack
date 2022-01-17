@@ -34,10 +34,10 @@ jobs:
       # Push new changes first, before adding new tests to your config.
       - slack/slack-notify-job-pass
       - slack/slack-notify:
-          title: "This is rocket! :rocket:"
-          image-url: "https://gundamevolution.jp/favicon.ico"
-      - run: exit 1
-      - slack/slack-notify-job-fail
+          title: "CITY! :cityscape:"
+          image-url: "https://source.unsplash.com/400x300/?city"
+      # - run: exit 1
+      # - slack/slack-notify-job-fail
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
