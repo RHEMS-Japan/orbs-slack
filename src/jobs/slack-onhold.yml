@@ -25,7 +25,7 @@ steps:
   - when:
       condition: << parameters.mentions >>
       steps:
-        - run: echo "export MENTIONS=<< parameters.mentions >> " >> $BASH_ENV
+        - run: echo "export MENTIONS=<< parameters.mentions >>" >> $BASH_ENV
   - when:
       condition: << parameters.image-url >>
       steps:
@@ -50,7 +50,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${MENTIONS}*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}\n*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
                     },
                     "fields": [
                       {
