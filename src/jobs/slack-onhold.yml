@@ -21,6 +21,7 @@ parameters:
     default: ''
     description: "Image to be attached to the notification message"
 steps:
+  - checkout
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - when:
       condition: << parameters.mentions >>

@@ -82,7 +82,6 @@ workflows:
       # Run any integration tests defined within the `jobs` key.
       - slack/slack-onhold:
           image-url: "https://source.unsplash.com/400x300/?city"
-          mentions: "@shindex"
       - pause_workflow:
           type: approval
           requires:
