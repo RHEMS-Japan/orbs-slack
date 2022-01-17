@@ -19,6 +19,10 @@ parameters:
 steps:
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - when:
+      condition: << parameters.mentions >>
+      steps:
+        - run: echo "export MENTIONS=<< parameters.mentions >>\n" >> $BASH_ENV
+  - when:
       condition: << parameters.image-url >>
       steps:
         - official-slack/notify:
@@ -42,7 +46,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
                     },
                     "fields": [
                       {

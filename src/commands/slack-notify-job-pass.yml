@@ -11,6 +11,10 @@ parameters:
       brackets: "<@U8XXXXXXX>"
 steps:
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
+  - when:
+      condition: << parameters.mentions >>
+      steps:
+        - run: echo "export MENTIONS=<< parameters.mentions >>\n" >> $BASH_ENV
   - official-slack/notify:
       event: pass
       mentions: << parameters.mentions >>
@@ -33,7 +37,7 @@ steps:
               "fields": [
                 {
                   "type": "mrkdwn",
-                  "text": "*Job name:*\t${CIRCLE_JOB}"
+                  "text": "${MENTIONS}*Job name:*\t${CIRCLE_JOB}"
                 }
               ],
               "accessory": {
