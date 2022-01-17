@@ -32,12 +32,12 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      # - slack/slack-notify-job-pass
-      # - slack/slack-notify:
-      #     title: "This is rocket! :rocket:"
-      #     image-url: "https://gundamevolution.jp/favicon.ico"
-      # - run: exit 1
-      # - slack/slack-notify-job-fail
+      - slack/slack-notify-job-pass
+      - slack/slack-notify:
+          title: "This is rocket! :rocket:"
+          image-url: "https://gundamevolution.jp/favicon.ico"
+      - run: exit 1
+      - slack/slack-notify-job-fail
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -78,7 +78,13 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
-      - integration-test-1
+      - slack/slack-onhold
+      - pause_workflow:
+          requires:
+            - slack/slack-onhold
+      - integration-test-1:
+          requires:
+            - pause_workflow
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
