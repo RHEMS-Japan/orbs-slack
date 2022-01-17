@@ -1,7 +1,5 @@
 description: >
-  This command echos "Hello World" using file inclusion.
-# What will this command do?
-# Descriptions should be short, simple, and clear.
+  Notify a Slack channel with a custom message.
 parameters:
   mentions:
     type: string
@@ -13,11 +11,11 @@ parameters:
       brackets: "<@U8XXXXXXX>"
   title:
     type: string
-    description: ""
+    description: "Title of the notification message"
   image-url:
     type: string
     default: ''
-    description: ""
+    description: "Image to be attached to the notification message"
 steps:
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - when:

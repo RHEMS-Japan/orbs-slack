@@ -1,7 +1,5 @@
 description: >
-  This command echos "Hello World" using file inclusion.
-# What will this command do?
-# Descriptions should be short, simple, and clear.
+  Notify the Slack channel that the job has failed.
 parameters:
   mentions:
     type: string
@@ -14,7 +12,7 @@ parameters:
 steps:
   - run: echo "export GIT_COMMIT_MSG=\"`git --no-pager log -1 --pretty=format:'%s'`\"" >> $BASH_ENV
   - official-slack/notify:
-      event: pass
+      event: fail
       mentions: << parameters.mentions >>
       custom: |
         {
@@ -23,7 +21,7 @@ steps:
               "type": "header",
               "text": {
                 "type": "plain_text",
-                "text": "Job succeed :tada:",
+                "text": "Job failed :interrobang:",
                 "emoji": true
               }
             },

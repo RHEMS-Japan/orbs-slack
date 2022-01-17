@@ -11,7 +11,8 @@ usage:
     your-job:
       machine: true
       steps:
-        - slack/notify
+        - slack/slack-notify:
+            title: SAMPLE TITLE
   workflows:
     your-workflow:
       jobs:
