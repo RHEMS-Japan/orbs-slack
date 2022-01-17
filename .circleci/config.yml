@@ -32,8 +32,10 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      - slack/slack-notify-job-pass
+      - slack/slack-notify-job-pass:
+          mentions: "@shindex"
       - slack/slack-notify:
+          mentions: "@shindex"
           title: "CITY! :cityscape:"
           image-url: "https://source.unsplash.com/400x300/?city"
       # - run: exit 1
@@ -78,7 +80,9 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
-      - slack/slack-onhold
+      - slack/slack-onhold:
+          mentions: "@shindex"
+          image-url: "https://source.unsplash.com/400x300/?city"
       - pause_workflow:
           type: approval
           requires:
