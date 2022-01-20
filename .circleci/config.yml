@@ -38,8 +38,8 @@ jobs:
           mentions: "@shindex"
           title: "CITY! :cityscape:"
           image-url: "https://source.unsplash.com/400x300/?city"
-      - run: exit 1
-      - slack/slack-notify-job-fail
+      # - run: exit 1
+      # - slack/slack-notify-job-fail
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
