@@ -22,6 +22,7 @@ parameters:
       multiple channels at once. Set the "SLACK_DEFAULT_CHANNEL" environment
       variable for the default channel.
 steps:
+  - checkout
   - run:
       name: set env
       command: |
