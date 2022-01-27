@@ -87,6 +87,8 @@ workflows:
       - slack/slack-onhold:
           mentions: "@shindex"
           image-url: "https://source.unsplash.com/400x300/?city"
+          channel: $FUGA_CHANNEL
+          access-token: $HOGE_TOKEN
       - pause_workflow:
           type: approval
           requires:
