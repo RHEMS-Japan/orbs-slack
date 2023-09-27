@@ -29,21 +29,20 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      # "greet" is a sample command packaged with this orb config.
-      # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
-      # Push new changes first, before adding new tests to your config.
-      - slack/slack-notify-job-pass:
-          mentions: "@shindex"
-          channel: $FUGA_CHANNEL
-          access-token: $HOGE_TOKEN
-      - slack/slack-notify:
-          mentions: "@shindex"
-          title: "CITY! :cityscape:"
-          image-url: "https://source.unsplash.com/400x300/?city"
-          channel: $FUGA_CHANNEL
-          access-token: $HOGE_TOKEN
-      # - run: exit 1
-      # - slack/slack-notify-job-fail
+      # - slack/slack-notify-job-pass:
+      #     mentions: "@shindex"
+      #     channel: $FUGA_CHANNEL
+      #     access-token: $HOGE_TOKEN
+      # - slack/slack-notify:
+      #     mentions: "@shindex"
+      #     title: "CITY! :cityscape:"
+      #     image-url: "https://source.unsplash.com/400x300/?city"
+      #     channel: $FUGA_CHANNEL
+      #     access-token: $HOGE_TOKEN
+      - run: exit 0
+      - slack/slack-notify-job-fail:
+          mentions: '@here'
+      - slack/slack-notify-job-pass
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -84,11 +83,13 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
+      # - slack/slack-onhold:
+      #     mentions: "@shindex"
+      #     image-url: "https://source.unsplash.com/400x300/?city"
+      #     channel: $FUGA_CHANNEL
+      #     access-token: $HOGE_TOKEN
       - slack/slack-onhold:
-          mentions: "@shindex"
-          image-url: "https://source.unsplash.com/400x300/?city"
-          channel: $FUGA_CHANNEL
-          access-token: $HOGE_TOKEN
+          mentions: "@here"
       - pause_workflow:
           type: approval
           requires:
