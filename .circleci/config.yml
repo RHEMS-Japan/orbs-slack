@@ -29,8 +29,6 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - slack/slack-notify-job-pass:
-          mentions: '@ichikawa'
       # - slack/slack-notify-job-pass:
       #     mentions: "@shindex"
       #     channel: $FUGA_CHANNEL
@@ -43,7 +41,8 @@ jobs:
       #     access-token: $HOGE_TOKEN
       - run: exit 1
       - slack/slack-notify-job-fail:
-          mentions: '@ichikawa'
+          mentions: '@here'
+      - slack/slack-notify-job-pass
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -84,11 +83,13 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
+      # - slack/slack-onhold:
+      #     mentions: "@shindex"
+      #     image-url: "https://source.unsplash.com/400x300/?city"
+      #     channel: $FUGA_CHANNEL
+      #     access-token: $HOGE_TOKEN
       - slack/slack-onhold:
-          mentions: "@shindex"
-          image-url: "https://source.unsplash.com/400x300/?city"
-          channel: $FUGA_CHANNEL
-          access-token: $HOGE_TOKEN
+          mentions: "@here"
       - pause_workflow:
           type: approval
           requires:
