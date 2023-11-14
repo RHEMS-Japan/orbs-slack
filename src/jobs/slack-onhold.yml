@@ -58,7 +58,7 @@ steps:
         echo "export SLACK_ACCESS_TOKEN=$(eval echo << parameters.access-token >>)" >> $BASH_ENV
 
         echo "export BRANCH_TAG=$(eval echo << parameters.branch-tag >>)" >> $BASH_ENV
-        
+
         echo "export REPO=$(eval echo << parameters.repo >>)" >> $BASH_ENV
 
         if [ -n "<< parameters.message >>" ]; then
