@@ -63,7 +63,7 @@ steps:
         fi
 
         if [ -n "<< parameters.commit >>" ]; then
-          echo "export COMMIT=${${CIRCLE_SHA1:0:7}}" >> $BASH_ENV
+          echo "export COMMIT=${CIRCLE_SHA1:0:7}" >> $BASH_ENV
         else
           echo "export COMMIT=$(eval echo << parameters.commit >>)" >> $BASH_ENV
         fi
