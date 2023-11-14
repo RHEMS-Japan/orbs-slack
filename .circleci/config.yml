@@ -93,6 +93,7 @@ workflows:
           message: fuga
           commit: aaa
           author: bbb
+          image-url: "https://source.unsplash.com/400x300/?city"
       - pause_workflow:
           type: approval
           requires:
