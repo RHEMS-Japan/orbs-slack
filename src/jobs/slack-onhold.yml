@@ -157,19 +157,19 @@ steps:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Repo:*\t\n${CIRCLE_PROJECT_REPONAME}"
+                        "text": "*Repo:*\t\n${REPO}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Message:*\t\n${GIT_COMMIT_MSG}"
+                        "text": "*Message:*\t\n${MESSAGE}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Commit:*\t\n${CIRCLE_SHA1:0:7}"
+                        "text": "*Commit:*\t\n${COMMIT}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "*Author:*\t\n${CIRCLE_USERNAME}"
+                        "text": "*Author:*\t\n${AUTHOR}"
                       }
                     ]
                   },
