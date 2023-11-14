@@ -89,6 +89,7 @@ workflows:
       #     channel: $FUGA_CHANNEL
       #     access-token: $HOGE_TOKEN
       - slack/slack-onhold:
+          branch-tag: popopo
           repo: hoge
           message: fuga
           commit: aaa
