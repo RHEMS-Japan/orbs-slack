@@ -89,7 +89,10 @@ workflows:
       #     channel: $FUGA_CHANNEL
       #     access-token: $HOGE_TOKEN
       - slack/slack-onhold:
-          mentions: "@here"
+          repo: hoge
+          message: fuga
+          commit: aaa
+          author: bbb
       - pause_workflow:
           type: approval
           requires:
