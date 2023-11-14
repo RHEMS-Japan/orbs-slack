@@ -31,6 +31,9 @@ parameters:
       You may include a comma separated list of channels if you wish to post to
       multiple channels at once. Set the "SLACK_DEFAULT_CHANNEL" environment
       variable for the default channel.
+  branch-tag:
+    type: string
+    default: $CIRCLE_BRANCH$CIRCLE_TAG
   repo:
     type: string
     default: $CIRCLE_PROJECT_REPONAME
@@ -54,6 +57,8 @@ steps:
       command: |
         echo "export SLACK_ACCESS_TOKEN=$(eval echo << parameters.access-token >>)" >> $BASH_ENV
 
+        echo "export BRANCH_TAG=$(eval echo << parameters.branch-tag >>)" >> $BASH_ENV
+        
         echo "export REPO=$(eval echo << parameters.repo >>)" >> $BASH_ENV
 
         if [ -n "<< parameters.message >>" ]; then
@@ -92,7 +97,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${MENTIONS}\n*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}\n*Branch / Tag:*\t${BRANCH_TAG}"
                     },
                     "fields": [
                       {
@@ -152,7 +157,7 @@ steps:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${MENTIONS}\n*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                      "text": "${MENTIONS}\n*Branch / Tag:*\t${BRANCH_TAG}"
                     },
                     "fields": [
                       {
