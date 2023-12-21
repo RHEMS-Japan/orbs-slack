@@ -98,7 +98,7 @@ steps:
               "elements": [
                 {
                   "type": "mrkdwn",
-                  "text": "*Branch / Tag:*\t${CIRCLE_BRANCH}${CIRCLE_TAG}"
+                  "text": "*Branch / Tag:*\t${BRANCH_TAG}"
                 }
               ]
             },
