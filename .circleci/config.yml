@@ -42,7 +42,12 @@ jobs:
       - run: exit 0
       - slack/slack-notify-job-fail:
           mentions: '@here'
-      - slack/slack-notify-job-pass
+      - slack/slack-notify-job-pass:
+          branch-tag: "feature/aaa"
+          repo: "repo AAA"
+          message: aaa
+          commit: 3efwqw
+          author: shindex
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
